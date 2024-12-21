@@ -1,213 +1,41 @@
-<!-- 
-
-  Credit to nisarhassan12 for the template, check out his links below!
-  His Github Repo: https://github.com/nisarhassan12/portfolio-template/
-  His Website: https://nisar.dev
-
--->
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
-
-  <title>
-    Alexander Chneerov
-  </title>
-
-  <meta name="description" content="Passionate developer based in Montreal, Canada. Skilled in Python, JavaScript, Flask, and Node.js. Winner of hackathons, creator of Ozone, Snake AI, and InfoCar projects. Avid camper and outdoor enthusiast. Let's innovate and explore together!" />
-  <meta name="keywords" content="Alexander Chneerov, Developer, Python, JavaScript, Flask, Node.js, Ozone Project, Snake AI, InfoCar Project, Hackathon Winner, Outdoor Enthusiast" />
-  <link rel="stylesheet" href="index.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
-
 <body>
-  <header class="header" role="banner" id="top">
-    <div class="row">
-      <nav class="nav" role="navigation">
-        <ul class="nav__items">
-          <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-          <li class="nav__item">
-            <a href="#about" class="nav__link">About</a>
-          </li>
-          <li class="nav__item">
-            <a href="#contact" class="nav__link">Contact</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="header__text-box row">
-      <div class="header__text">
-        <h1 class="heading-primary">
-          <span>Alexander Chneerov</span>
-        </h1>
-        <p>A Developer based in Montreal, Canada.</p>
-        <a href="#contact" class="btn btn--pink">Get in touch</a>
-      </div>
-    </div>
-  </header>
-
-  <main role="main">
-
-
-    <section class="work" id="work">
-      <div class="row">
-        <h2>My Work</h2>
-        <div class="work__boxes">
-
-
-
-          
-          <div class="work__box">
-            <div class="work__text">
-              <h3>Snake AI</h3>
-              <p>
-                Led Python-based Snake game development using PyGame, incorporating 
-                advanced AI with a PyTorch-based Deep Q-Network (DQN). Managed Q-learning 
-                training and agent interactions, enhancing the gaming experience.
-              </p>
-              
-              <ul class="work__list">
-                <li>Python</li>
-                <li>PyTorch</li>
-                <li>Deep Q-learning</li>
-              </ul>
-              <div class="work__links">
-                <a href="https://github.com/achneerov/pygame-reinforcement-learning" target="_blank" class="link__text">
-                  Visit Github <span>&rarr;</span>
+    <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-lg max-w-5xl p-8 mx-auto flex flex-col md:flex-row gap-8 items-center">
+            <div class="flex-1">
+                <img 
+                    src="me.jpg" 
+                    alt="Profile photo" 
+                    class="rounded-lg w-full h-auto object-cover"
+                />
+            </div>
+            
+            <div class="flex-1 space-y-4">
+                <h1 class="text-3xl font-bold text-gray-800">
+                    Cybersecurity Professional
+                </h1>
+                
+                <div class="space-y-4 text-gray-600">
+                    <p>
+                        As a cybersecurity professional and Computer Science student at Concordia University, I specialize in cryptography, network security, and leveraging AI/ML technologies to enhance security. With hands-on experience as a Tier 1 Security Analyst intern at Foodtastic Inc., I’ve successfully led phishing campaigns, implemented security solutions like Microsoft Intune and Multi-Factor Authentication, and designed automated systems to optimize operations. My technical skills, coupled with a strong eagerness to learn and problem-solving abilities, allow me to deliver impactful solutions. I'm also actively involved in coding competitions, hackathons, and leadership within the Computer Science Society.
+                    </p>
+                </div>
+                
+                <a 
+                    href="mailto:achneerov@gmail.com"
+                    class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg 
+                           font-medium hover:bg-blue-700 transition-colors duration-200"
+                >
+                    Contact Me
                 </a>
-              </div>
             </div>
-            <div class="work__image-box">
-              <img src="./images/project-snake.jpg" class="work__image" alt="Snake AI Project" />
-            </div>
-          </div>
-
-          <div class="work__box">
-            <div class="work__text">
-              <h3>InfoCar</h3>
-              <p>
-                Developed a dynamic Flask-based vehicle history web app 
-                in Python and Selenium. Integrated real-time recall data 
-                by scraping information from car manufacturer websites. 
-                Designed an intuitive interface with HTML, CSS, and 
-                JavaScript for an enhanced user experience.
-              </p>
-              
-              <ul class="work__list">
-                <li>Python</li>
-                <li>Selenium</li>
-                <li>Flask</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-              </ul>
-              <div class="work__links">
-                <a href="https://github.com/achneerov/InfoCar" target="_blank" class="link__text">
-                  Visit Github <span>&rarr;</span>
-                </a>
-              </div>
-            </div>
-            <div class="work__image-box">
-              <img src="./images/project-infocar.jpg" class="work__image" alt="InfoCar Project" />
-            </div>
-          </div>
-
-          <div class="work__box">
-            <div class="work__text">
-              <h3>Ozone</h3>
-              <p>
-                Participated a collaborative effort to develop a comprehensive video management and 
-                filtration software tailored for enterprise applications. This involved 
-                creating innovative filtration elements and settings in Swift, resulting 
-                in a remarkable 50% reduction in RAM usage. Additionally, honed effective 
-                communication skills through consistent participation in weekly team meetings.
-              </p>
-              <ul class="work__list">
-                <li>Swift</li>
-                <li>Xcode</li>
-                <li>GitHub</li>
-              </ul>
-            </div>
-            <div class="work__image-box">
-              <img src="./images/project-ozone.jpg" class="work__image" alt="Ozone Project" />
-            </div>
-          </div>
-          
-
         </div>
-      </div>
-    </section>
-
-
-    <section class="about" id="about">
-      <div class="row">
-        <h2>About Me</h2>
-        <div class="about__content">
-          <div class="about__text">
-            <p>
-              Hey, I'm Alexander Chneerov, a computer science student at 
-              Concordia University in Montreal. From winning hackathons to 
-              developing projects like Ozone and InfoCar, I thrive on coding 
-              challenges. Skilled in languages like Python and JavaScript, 
-              I specialize in frameworks such as Flask and Node.js. Beyond 
-              coding, I'm an avid camper, finding inspiration in the outdoors. 
-              Check out my projects on GitHub or connect with me on LinkedIn. 
-              Let's innovate and explore together!
-            </p>
-          </div>
-
-          <div class="about__photo-container">
-            <img class="about__photo" src="./images/alex.jpg" alt="" />
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <section class="contact" id="contact">
-    <div class="row">
-      <h2>Get in Touch</h2>
-      <div class="contact__info">
-        <p>
-          Whether you need a speedy and user-friendly developer for your product or business, 
-          need consultation, have questions, advice, or simply want to say "Hi 👋," feel 
-          free to reach out! I'm committed to fast responses, and the quickest way to 
-          contact me is through email. Looking forward to connecting with you! 😊
-        </p>
-        <a href="mailto:achneerov@gmail.com" class="btn">achneerov@gmail.com</a>
-      </div>
     </div>
-  </section>
-
-  <footer role="contentinfo" class="footer">
-    <div class="row">
-      <ul class="footer__social-links">
-        <li class="footer__social-link-item">
-          <a href="https://twitter.com/achneerov" title="Link to Twitter Profile">
-            <img src="./images/twitter.svg" class="footer__social-image" alt="Twitter">
-          </a>
-        </li>
-        <li class="footer__social-link-item">
-          <a href="https://github.com/achneerov" title="Link to Github Profile">
-            <img src="./images/github.svg" class="footer__social-image" alt="Github">
-          </a>
-        </li>
-        <li class="footer__social-link-item">
-          <a href="https://www.linkedin.com/in/achneerov/">
-            <img src="./images/linkedin.svg" title="Link to Linkedin Profile" class="footer__social-image" alt="Linkedin">
-          </a>
-        </li>
-      </ul>
-    </div>
-  </footer>
-
-  <a href="#top" class="back-to-top" title="Back to Top">
-    <img src="./images/arrow-up.svg" alt="Back to Top" class="back-to-top__image"/>
-  </a>
-  <script src="./index.js"></script>
 </body>
-
 </html>
