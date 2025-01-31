@@ -1,40 +1,158 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #f9fafb;
+        }
+        .shape {
+            fill: none;
+            stroke-width: 2;
+        }
+    </style>
 </head>
 <body>
-<div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-<div class="bg-white rounded-xl shadow-lg max-w-2xl p-8 mx-auto flex flex-col gap-8 items-center">
-<div class="flex-1 space-y-4">
-<h1 class="text-3xl font-bold text-gray-800">
- Alex - Computer Science Enthusiast
-</h1>
-<div class="space-y-4 text-gray-600">
-<p>
- As a Computer Science student at Concordia University with hands-on industry experience,
- I combine strong technical foundations with practical implementation skills to deliver
- innovative solutions. My experience spans developing automated systems, implementing
- enterprise-level solutions, and optimizing operational workflows. Through my internship
- at Foodtastic Inc., I've demonstrated my ability to lead technical initiatives, collaborate
- with cross-functional teams, and adapt to emerging technologies. My technical expertise,
- coupled with strong problem-solving abilities and eagerness to learn, enables me to
- contribute effectively to complex projects. Active participation in coding competitions,
- hackathons, and leadership roles in the Computer Science Society showcases my commitment
- to continuous growth and community engagement in the tech field.
-</p>
-</div>
-<a
-href="mailto:achneerov@gmail.com"
-class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg
- font-medium hover:bg-blue-700 transition-colors duration-200"
->
- Contact Me
-</a>
-</div>
-</div>
-</div>
+    <svg id="animation-container"></svg>
+    <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white bg-opacity-90 rounded-xl shadow-lg max-w-2xl p-8 mx-auto flex flex-col gap-8 items-center">
+            <div class="flex-1 space-y-4">
+                <h1 class="text-3xl font-bold text-gray-800">
+                    Alex - Computer Science Enthusiast
+                </h1>
+                <div class="space-y-4 text-gray-600">
+                    <p>
+                        As a Computer Science student at Concordia University, I combine technical expertise with practical experience gained through my internship at Foodtastic Inc. My involvement in coding competitions and leadership roles in the Computer Science Society demonstrates my passion for technology and continuous learning.
+
+                    </p>
+                </div>
+                <a
+                    href="mailto:achneerov@gmail.com"
+                    class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200"
+                >
+                    Contact Me
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const colors = [
+            '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEEAD',
+            '#D4A5A5', '#9B59B6', '#3498DB', '#E74C3C', '#2ECC71'
+        ];
+
+        class Shape {
+            constructor(svg) {
+                this.svg = svg;
+                this.element = null;
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.size = 20 + Math.random() * 40;
+                // Reduced speed values from 4 to 1 for slower movement
+                this.speedX = (Math.random() - 0.5) * 1;
+                this.speedY = (Math.random() - 0.5) * 1;
+                this.rotation = Math.random() * 360;
+                // Reduced rotation speed from 4 to 1
+                this.rotationSpeed = (Math.random() - 0.5) * 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.type = Math.floor(Math.random() * 3);
+                this.create();
+            }
+
+            create() {
+                const shape = document.createElementNS('http://www.w3.org/2000/svg', 
+                    this.type === 0 ? 'circle' : 
+                    this.type === 1 ? 'rect' : 'polygon');
+                
+                shape.classList.add('shape');
+                shape.style.stroke = this.color;
+
+                if (this.type === 0) {
+                    // Circle
+                    shape.setAttribute('r', this.size / 2);
+                    shape.setAttribute('cx', this.x);
+                    shape.setAttribute('cy', this.y);
+                } else if (this.type === 1) {
+                    // Rectangle
+                    shape.setAttribute('width', this.size);
+                    shape.setAttribute('height', this.size);
+                    shape.setAttribute('x', this.x);
+                    shape.setAttribute('y', this.y);
+                } else {
+                    // Triangle
+                    const points = this.calculateTrianglePoints();
+                    shape.setAttribute('points', points);
+                }
+
+                this.element = shape;
+                this.svg.appendChild(shape);
+            }
+
+            calculateTrianglePoints() {
+                const halfSize = this.size / 2;
+                const height = this.size * Math.sqrt(3) / 2;
+                return `${this.x},${this.y - height/2} 
+                        ${this.x - halfSize},${this.y + height/2} 
+                        ${this.x + halfSize},${this.y + height/2}`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+
+                // Bounce off walls
+                if (this.x < 0 || this.x > window.innerWidth) this.speedX *= -1;
+                if (this.y < 0 || this.y > window.innerHeight) this.speedY *= -1;
+
+                if (this.type === 0) {
+                    // Update circle position
+                    this.element.setAttribute('cx', this.x);
+                    this.element.setAttribute('cy', this.y);
+                } else if (this.type === 1) {
+                    // Update rectangle position and rotation
+                    this.element.setAttribute('x', this.x);
+                    this.element.setAttribute('y', this.y);
+                    this.element.setAttribute('transform', `rotate(${this.rotation} ${this.x + this.size/2} ${this.y + this.size/2})`);
+                } else {
+                    // Update triangle position and rotation
+                    const points = this.calculateTrianglePoints();
+                    this.element.setAttribute('points', points);
+                    this.element.setAttribute('transform', `rotate(${this.rotation} ${this.x} ${this.y})`);
+                }
+            }
+        }
+
+        function init() {
+            const svg = document.getElementById('animation-container');
+            svg.setAttribute('width', window.innerWidth);
+            svg.setAttribute('height', window.innerHeight);
+            
+            const shapes = Array.from({ length: 200 }, () => new Shape(svg));
+
+            function animate() {
+                shapes.forEach(shape => shape.update());
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                svg.setAttribute('width', window.innerWidth);
+                svg.setAttribute('height', window.innerHeight);
+            });
+        }
+
+        init();
+    </script>
 </body>
 </html>
